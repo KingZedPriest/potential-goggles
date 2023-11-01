@@ -6,7 +6,7 @@ const raleway = Raleway({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Gist Spot',
-  description: 'Your go to gist spot',
+  description: 'Your go to gist spot.',
 }
 
 export default function RootLayout({
