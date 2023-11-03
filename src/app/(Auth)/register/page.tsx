@@ -38,7 +38,7 @@ export default function Register() {
             <Link href="/login">Log In</Link>
           </span>
         </p>
-        <div className="flex flex-col md:flex-row md:justify-between items-center md:w-full">
+        <div className="flex flex-col gap-y-5 md:gap-y-0 md:flex-row md:justify-between items-center md:w-full">
           <form className="mt-10 w-full md:w-[70%]" action="">
             <div className="flex flex-col gap-y-5 md:gap-y-0 md:flex-row md:justify-between w-[20rem] md:w-[26rem]">
               <div className="relative w-full md:w-[49%]">
@@ -103,8 +103,8 @@ export default function Register() {
               />
             </div>
             <div className="flex w-[20rem] md:w-[26rem] mt-8 justify-between">
-              <button className="w-full md:w-[48%] py-4 text-center text-xs rounded-3xl bg-[#595B63] hover:bg-[#5195EA] duration-500">
-                Change Method
+               <button className="w-full md:w-[48%] py-4 text-center text-xs rounded-3xl bg-[#595B63] hover:bg-[#5195EA] duration-500">
+                <Link href="/anotherLogin">Change Method</Link>
               </button>
               <button
                 className="w-full md:w-[48%] py-4 text-center text-xs rounded-3xl bg-[#5195EA] hover:text-[#5195EA] hover:bg-[#EDEDEE] duration-500 hover:font-semibold"

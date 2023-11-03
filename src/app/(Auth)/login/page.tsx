@@ -74,7 +74,7 @@ export default function Login() {
             </div>
             <div className="flex w-[20rem] md:w-[26rem] mt-8 justify-between">
               <button className="w-full md:w-[48%] py-4 text-center text-xs rounded-3xl bg-[#595B63] hover:bg-[#5195EA] duration-500">
-                Change Method
+                <Link href="/anotherLogin">Change Method</Link>
               </button>
               <button
                 className="w-full md:w-[48%] py-4 text-center text-xs rounded-3xl bg-[#5195EA] hover:text-[#5195EA] hover:bg-[#EDEDEE] duration-500 hover:font-semibold"
