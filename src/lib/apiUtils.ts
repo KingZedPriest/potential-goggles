@@ -31,18 +31,4 @@ export const  makeApiRequest = (
     });
 };
 
-// const onSubmit = (event: FormEvent) => {
-//   event.preventDefault();
 
-//   const formData = state;
-
-//   // Example usage
-//   makeApiRequest('/register', 'post', formData, {
-//     onSuccess: () => {
-//       // Handle success
-//     },
-//     onError: (error) => {
-//       // Handle error
-//     },
-//   });
-// };

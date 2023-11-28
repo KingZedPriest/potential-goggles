@@ -1,6 +1,9 @@
 "use client";
 import { useState, useRef, FormEvent } from "react";
 import Link from "next/link";
+import { makeApiRequest } from "@/lib/apiUtils";
+
+
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,6 +12,9 @@ import { FaRegAddressCard } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { BsEmojiHeartEyesFill } from "react-icons/bs";
 import { FaMehRollingEyes } from "react-icons/fa";
+
+//FIXME: Change the toasts, clear the input fields when done, and make the sign in work
+// Make the Signout work and learn how the changing of password works
 
 interface InitialStateProps {
   firstName : string,
@@ -39,9 +45,22 @@ export default function Register() {
   }
   //For the Function Submit
   const onSubmit = (event: FormEvent) => {
-    event.preventDefault()
-    
-  }
+  event.preventDefault();
+
+  const formData = state;
+
+    // Example usage
+    makeApiRequest('/register', 'post', formData, {
+    onSuccess: () => {
+      // Handle success
+      // toast.success("Account was created successfully.");
+    },
+    onError: (error) => {
+      // Handle error
+      // toast.error("Account was not created try again later.");
+    },
+  });
+};
 
   return (
     <main className="fixed h-screen w-full top-0 left-0">
