@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, FormEvent } from "react";
 import Link from "next/link";
 
 import Header from "@/components/Header";
@@ -10,14 +10,38 @@ import { MdEmail } from "react-icons/md";
 import { BsEmojiHeartEyesFill } from "react-icons/bs";
 import { FaMehRollingEyes } from "react-icons/fa";
 
+interface InitialStateProps {
+  firstName : string,
+  lastName : string,
+  email: string,
+  password: string,
+}
+const initialState:InitialStateProps = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: ""
+}
 export default function Register() {
+  //Input State, For the Password
   const [inputType, setInputType] = useState<"text" | "password">("password");
-
+  //State for the inputs
+  const [state, setState] = useState(initialState)
+  //Ref Hook for the Password field
   const inputRef = useRef<HTMLInputElement | null>(null);
-
+  //Function for the Input type toggle
   const toggleInputType = () => {
     setInputType((prevType) => (prevType === "password" ? "text" : "password"));
   };
+  //Function for the State Changing
+  const handleChange = (event: any) => {
+      setState({...state, [event.target.name]: event.target.value})
+  }
+  //For the Function Submit
+  const onSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    
+  }
 
   return (
     <main className="fixed h-screen w-full top-0 left-0">
@@ -39,7 +63,7 @@ export default function Register() {
           </span>
         </p>
         <div className="flex flex-col gap-y-5 md:gap-y-0 md:flex-row md:justify-between items-center md:w-full">
-          <form className="mt-10 w-full md:w-[70%]" action="">
+          <form className="mt-10 w-full md:w-[70%]" onSubmit={onSubmit}>
             <div className="flex flex-col gap-y-5 md:gap-y-0 md:flex-row md:justify-between w-[20rem] md:w-[26rem]">
               <div className="relative w-full md:w-[49%]">
                 <input
@@ -48,6 +72,7 @@ export default function Register() {
                   name="firstName"
                   id="firstName"
                   placeholder="First Name"
+                  onChange={handleChange}
                 />
                 <FaRegAddressCard
                   size={14}
@@ -61,6 +86,7 @@ export default function Register() {
                   name="lastName"
                   id="lastName"
                   placeholder="Last Name"
+                  onChange={handleChange}
                 />
                 <FaRegAddressCard
                   size={14}
@@ -75,6 +101,7 @@ export default function Register() {
                 name="email"
                 id="email"
                 placeholder="Email"
+                onChange={handleChange}
               />
               <MdEmail size={14} className="absolute top-4 right-2" />
             </div>
@@ -86,6 +113,7 @@ export default function Register() {
                 name="password"
                 id="password"
                 placeholder="Password"
+                onChange={handleChange}
               />
               <BsEmojiHeartEyesFill
                 size={14}
@@ -103,11 +131,11 @@ export default function Register() {
               />
             </div>
             <div className="flex w-[20rem] md:w-[26rem] mt-8 justify-between">
-               <button className="w-full md:w-[48%] py-4 text-center text-xs rounded-3xl bg-[#595B63] hover:bg-[#5195EA] duration-500">
+               <button className="w-full md:w-[48%] py-4 text-center text-xs md:text-sm rounded-3xl bg-[#595B63] hover:bg-[#5195EA] duration-500">
                 <Link href="/anotherLogin">Change Method</Link>
               </button>
               <button
-                className="w-full md:w-[48%] py-4 text-center text-xs rounded-3xl bg-[#5195EA] hover:text-[#5195EA] hover:bg-[#EDEDEE] duration-500 hover:font-semibold"
+                className="w-full md:w-[48%] py-4 text-center text-xs md:text-sm rounded-3xl bg-[#5195EA] hover:text-[#5195EA] hover:bg-[#EDEDEE] duration-500 hover:font-semibold"
                 type="submit"
               >
                 Create Account

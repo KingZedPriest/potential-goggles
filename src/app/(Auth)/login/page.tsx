@@ -1,22 +1,41 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, FormEvent } from "react";
 import Link from "next/link";
 
 import Header from "@/components/Header";
-import { FaRegAddressCard } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { BsEmojiHeartEyesFill } from "react-icons/bs";
 import { FaMehRollingEyes } from "react-icons/fa";
 
+
+interface InitialStateProps {
+  email: string,
+  password: string,
+}
+const initialState:InitialStateProps = {
+  email: "",
+  password: ""
+}
 export default function Login() {
+  //Input State, For the Password
   const [inputType, setInputType] = useState<"text" | "password">("password");
-
+  //State for the inputs
+  const [state, setState] = useState(initialState)
+  //Ref Hook for the Password field
   const inputRef = useRef<HTMLInputElement | null>(null);
-
+  //Function for the Input type toggle
   const toggleInputType = () => {
     setInputType((prevType) => (prevType === "password" ? "text" : "password"));
   };
-
+  //Function for the State Changing
+  const handleChange = (event: any) => {
+      setState({...state, [event.target.name]: event.target.value})
+  }
+  //For the Function Submit
+  const onSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    
+  }
   return (
     <main className="fixed h-screen w-full top-0 left-0">
       <Header />
@@ -37,7 +56,7 @@ export default function Login() {
           </span>
         </p>
         <div className="flex flex-col md:flex-row md:justify-between">
-          <form className="mt-10" action="">
+          <form className="mt-10" onSubmit={onSubmit}>
             <div className="relative mt-4 w-[20rem] md:w-[26rem]">
               <input
                 className="text-sm focus:border-2 focus:border-[#5195EA] bg-[#595B63] px-2 py-3 w-full outline-none rounded-xl placeholder:text-xs"
@@ -45,6 +64,7 @@ export default function Login() {
                 name="email"
                 id="email"
                 placeholder="Email"
+                onChange={handleChange}
               />
               <MdEmail size={14} className="absolute top-4 right-2" />
             </div>
@@ -56,6 +76,7 @@ export default function Login() {
                 name="password"
                 id="password"
                 placeholder="Password"
+                onChange={handleChange}
               />
               <BsEmojiHeartEyesFill
                 size={14}
@@ -73,11 +94,11 @@ export default function Login() {
               />
             </div>
             <div className="flex w-[20rem] md:w-[26rem] mt-8 justify-between">
-              <button className="w-full md:w-[48%] py-4 text-center text-xs rounded-3xl bg-[#595B63] hover:bg-[#5195EA] duration-500">
+              <button className="w-full md:w-[48%] py-4 text-center text-xs md:text-sm rounded-3xl bg-[#595B63] hover:bg-[#5195EA] duration-500">
                 <Link href="/anotherLogin">Change Method</Link>
               </button>
               <button
-                className="w-full md:w-[48%] py-4 text-center text-xs rounded-3xl bg-[#5195EA] hover:text-[#5195EA] hover:bg-[#EDEDEE] duration-500 hover:font-semibold"
+                className="w-full md:w-[48%] py-4 text-center text-xs md:text-sm rounded-3xl bg-[#5195EA] hover:text-[#5195EA] hover:bg-[#EDEDEE] duration-500 hover:font-semibold"
                 type="submit"
               >
                 Login
